@@ -26,13 +26,13 @@ export class CiudadService {
 
     async create(ciudad: CiudadEntity): Promise<CiudadEntity> {            
         if( !ValidaPais(ciudad.pais))
-            throw new BusinessLogicException("El pais de la ciudad ingresada no se encuentra dentro de los paises permitidos", BusinessError.NOT_FOUND);  
+            throw new BusinessLogicException("El pais de la ciudad ingresada no se encuentra dentro de los paises permitidos", BusinessError.PRECONDITION_FAILED);
         return await this.ciudadRepository.save(ciudad);
     }
 
     async update(id: string, ciudad: CiudadEntity): Promise<CiudadEntity> {
         if( !ValidaPais(ciudad.pais))
-            throw new BusinessLogicException("El pais de la ciudad ingresada no se encuentra dentro de los paises permitidos", BusinessError.NOT_FOUND);  
+            throw new BusinessLogicException("El pais de la ciudad ingresada no se encuentra dentro de los paises permitidos", BusinessError.PRECONDITION_FAILED);  
 
         const persistedCiudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}});
         if (!persistedCiudad)

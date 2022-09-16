@@ -1,0 +1,368 @@
+{
+	"info": {
+		"_postman_id": "a9a099d9-c50a-46ae-b2b4-9cf1bef32d5d",
+		"name": "Asociación",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23048305"
+	},
+	"item": [
+		{
+			"name": "Asociar un nuevo supermercado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Asociar un supermercado que no existe a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el Supermercado con el Id dado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/2805d1fd-4a0a-4f74-94dd-3341d2e9e2f4",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"2805d1fd-4a0a-4f74-94dd-3341d2e9e2f4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener todos los supermercados que pertenecen a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener un supermercado que no está asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado no se encuentra asociado a la ciudad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/2b167a83-b397-4d3e-9f7d-aa4690f65d6a",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"2b167a83-b397-4d3e-9f7d-aa4690f65d6a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados que están asociados a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"   pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"2b167a83-b397-4d3e-9f7d-aa4690f65d6a\",\r\n        \"nombre\": \"Supermercado 2\",\r\n        \"longitud\": \"110°00'43\",\r\n        \"latitud\": \"27°28'28\",\r\n        \"paginaWeb\": \"http://supermercado2.com\",\r\n        \"ciudades\": []\r\n    },\r\n    {\r\n        \"id\": \"5b5363a8-d2ad-41b6-9e5a-04ea29cd6cfe\",\r\n        \"nombre\": \"Supermercado 1\",\r\n        \"longitud\": \"110°00'43\",\r\n        \"latitud\": \"27°28'28\",\r\n        \"paginaWeb\": \"http://supermercado1.com\",\r\n        \"ciudades\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar los supermercados asociados a una ciudad, con un supermercado inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"   pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"No se encontró el supermercado con el Id dado\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"id\": \"2b167a83-b397-2d2e-9f7d-aa4690f65d6a\",\r\n        \"nombre\": \"Supermercado 5\",\r\n        \"longitud\": \"110°00'43\",\r\n        \"latitud\": \"27°28'28\",\r\n        \"paginaWeb\": \"http://supermercado5.com\",\r\n        \"ciudades\": []\r\n    },\r\n    {\r\n        \"id\": \"5b5363a8-d2ad-41b6-9e5a-04ea29cd6cfe\",\r\n        \"nombre\": \"Supermercado 1\",\r\n        \"longitud\": \"110°00'43\",\r\n        \"latitud\": \"27°28'28\",\r\n        \"paginaWeb\": \"http://supermercado1.com\",\r\n        \"ciudades\": []\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado asociado a una ciudad",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"   pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/5b5363a8-d2ad-41b6-9e5a-04ea29cd6cfe",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"5b5363a8-d2ad-41b6-9e5a-04ea29cd6cfe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar un supermercado que no estaba previamente asociado a una ciudad.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 412\", function () {\r",
+							"   pm.response.to.have.status(412);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Get expected error message\", function () {\r",
+							"   var data = pm.response.json();\r",
+							"   pm.expect(data.message).to.eql(\"El supermercado no se encuentra asociado a la ciudad\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/cities/b52b2a44-dd72-4075-8424-f473a3d40dc6/supermarkets/2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"cities",
+						"b52b2a44-dd72-4075-8424-f473a3d40dc6",
+						"supermarkets",
+						"2805d1fd-4a0a-4f74-94dd-3341d2e9e2f8"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/api/v1",
+			"type": "string"
+		}
+	]
+}

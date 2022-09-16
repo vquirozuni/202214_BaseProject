@@ -1,10 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Post, Put, UseInterceptors } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { CiudadSupermercadoService } from './ciudad-supermercado.service';
 import { SupermercadoDto } from '../supermercado/supermercado.dto';
 import { SupermercadoEntity } from '../supermercado/supermercado.entity';
+import { BusinessErrorsInterceptor } from 'src/shared/interceptors/business-errors.interceptor';
 
+@UseInterceptors(BusinessErrorsInterceptor)
 @Controller('cities')
 export class CiudadSupermercadoController {
     constructor(private readonly ciudadSupermercadoService: CiudadSupermercadoService){}

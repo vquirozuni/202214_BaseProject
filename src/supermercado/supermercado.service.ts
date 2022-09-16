@@ -26,13 +26,13 @@ export class SupermercadoService {
 
     async create(supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {            
         if( !ValidaSupermercado(supermercado.nombre))
-            throw new BusinessLogicException("El nombre del supermercado debe tener mas de 10 caracteres", BusinessError.NOT_FOUND);  
+            throw new BusinessLogicException("El nombre del supermercado debe tener mas de 10 caracteres", BusinessError.PRECONDITION_FAILED);  
         return await this.supermercadoRepository.save(supermercado);
     }
 
     async update(id: string, supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
         if( !ValidaSupermercado(supermercado.nombre))
-            throw new BusinessLogicException("El nombre del supermercado debe tener mas de 10 caracteres", BusinessError.NOT_FOUND);  
+            throw new BusinessLogicException("El nombre del supermercado debe tener mas de 10 caracteres", BusinessError.PRECONDITION_FAILED);  
 
         const persistedSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id}});
         if (!persistedSupermercado)
@@ -50,6 +50,6 @@ export class SupermercadoService {
     }
 }
 
-function ValidaSupermercado(nombre: string) {    
+function ValidaSupermercado(nombre: string) {   
     return nombre.length > 10;
 }
