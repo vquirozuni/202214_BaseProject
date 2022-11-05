@@ -43,10 +43,10 @@ export class SupermercadoService {
 
     async delete(id: string) {
         const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id}});
-        if (supermercado)      
-            await this.supermercadoRepository.remove(supermercado);
-        else
-            throw new BusinessLogicException("No se encontró el supermercado con el ID dado", BusinessError.NOT_FOUND);
+        if (!supermercado)
+          throw new BusinessLogicException("No se encontró el supermercado con el ID dado", BusinessError.NOT_FOUND);
+      
+        await this.supermercadoRepository.remove(supermercado);
     }
 }
 

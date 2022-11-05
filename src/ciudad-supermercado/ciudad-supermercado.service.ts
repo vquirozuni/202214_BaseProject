@@ -19,6 +19,7 @@ export class CiudadSupermercadoService {
     async addSupermarketToCity(ciudadId: string, supermercadoId: string): Promise<CiudadEntity> 
     {
         const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
+        //Se valida que existan supermercado y ciudad
         if (!supermercado)
           throw new BusinessLogicException("No se encontró el Supermercado con el Id dado", BusinessError.NOT_FOUND);
       
