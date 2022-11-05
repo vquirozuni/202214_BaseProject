@@ -13,13 +13,11 @@ export class CiudadService {
     ){}
 
     async findAll(): Promise<CiudadEntity[]> {
-        const tabla = "supermercados"
-        return await this.ciudadRepository.find({ relations: [tabla] });
+        return await this.ciudadRepository.find({ relations: ["supermercados"] });
     }
 
     async findOne(id: string): Promise<CiudadEntity> {
-        const tabla = "supermercados"
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id}, relations: [tabla] } );
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id}, relations: ["supermercados"] } );
         if (!ciudad)
           throw new BusinessLogicException("No se encontró la ciudad con el ID dado", BusinessError.NOT_FOUND);
    

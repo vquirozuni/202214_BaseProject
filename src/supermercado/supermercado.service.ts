@@ -13,13 +13,11 @@ export class SupermercadoService {
     ){}
 
     async findAll(): Promise<SupermercadoEntity[]> {
-        const tabla = "ciudades"
-        return await this.supermercadoRepository.find({ relations: [tabla] });
+        return await this.supermercadoRepository.find({ relations: ["ciudades"] });
     }
 
     async findOne(id: string): Promise<SupermercadoEntity> {
-        const tabla = "ciudades"
-        const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id}, relations: [tabla] } );
+        const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id}, relations: ["ciudades"] } );
         if (!supermercado)
           throw new BusinessLogicException("No se encontró el supermercado con el ID dado", BusinessError.NOT_FOUND);
    
@@ -45,10 +43,10 @@ export class SupermercadoService {
 
     async delete(id: string) {
         const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id}});
-        if (!supermercado)
-          throw new BusinessLogicException("No se encontró el supermercado con el ID dado", BusinessError.NOT_FOUND);
-      
-        await this.supermercadoRepository.remove(supermercado);
+        if (supermercado)      
+            await this.supermercadoRepository.remove(supermercado);
+        else
+            throw new BusinessLogicException("No se encontró el supermercado con el ID dado", BusinessError.NOT_FOUND);
     }
 }
 
