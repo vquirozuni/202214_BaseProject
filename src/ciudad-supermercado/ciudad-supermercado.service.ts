@@ -22,8 +22,8 @@ export class CiudadSupermercadoService {
         
         if (!supermercado)
           throw new BusinessLogicException("No se encontró el Supermercado con el Id dado", BusinessError.NOT_FOUND);
-      
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]})
+        const tabla = "supermercados";      
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]})
         if (!ciudad)
           throw new BusinessLogicException("no se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND);
     
@@ -32,7 +32,8 @@ export class CiudadSupermercadoService {
     }
 
     async findSupermarketsFromCity(ciudadId: string): Promise<SupermercadoEntity[]> {
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+      const tabla = "supermercados";      
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]});
         if (!ciudad)
           throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)
        
@@ -44,7 +45,8 @@ export class CiudadSupermercadoService {
         if (!supermercado)
           throw new BusinessLogicException("No se encontró el Supermercado con el Id dado", BusinessError.NOT_FOUND)
        
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+        const tabla = "supermercados";      
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]});
         if (!ciudad)
           throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)
    
@@ -57,7 +59,8 @@ export class CiudadSupermercadoService {
     }
 
     async updateSupermarketsFromCity(ciudadId: string, supermercados: SupermercadoEntity[]): Promise<CiudadEntity> {
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+      const tabla = "supermercados";      
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: []});
     
         if (!ciudad)
           throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)
@@ -77,7 +80,8 @@ export class CiudadSupermercadoService {
         if (!supermercado)
           throw new BusinessLogicException("No se encontró el supermercado con el Id dado", BusinessError.NOT_FOUND)
     
-        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
+        const tabla = "supermercados";      
+        const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]});
         if (!ciudad)
           throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)
     
