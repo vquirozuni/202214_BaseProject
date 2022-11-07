@@ -31,6 +31,20 @@ export class CiudadSupermercadoService {
         return await this.ciudadRepository.save(ciudad);
     }
 
+    async funcionDuplicada(ciudadId: string, supermercadoId: string): Promise<CiudadEntity> 
+{
+    const supermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where: {id: supermercadoId}});
+    
+    if (!supermercado)
+      throw new BusinessLogicException("No se encontró el Supermercado con el Id dado", BusinessError.NOT_FOUND);
+    const tabla = "supermercados";      
+    const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]})
+    if (!ciudad)
+      throw new BusinessLogicException("no se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND);
+    
+    ciudad.supermercados = [...ciudad.supermercados, supermercado];
+    return await this.ciudadRepository.save(ciudad);
+}
     async findSupermarketsFromCity(ciudadId: string): Promise<SupermercadoEntity[]> {
       const tabla = "supermercados";      
         const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: [tabla]});
