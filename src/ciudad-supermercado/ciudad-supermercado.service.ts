@@ -34,8 +34,7 @@ export class CiudadSupermercadoService {
     async findSupermarketsFromCity(ciudadId: string): Promise<SupermercadoEntity[]> {
         const ciudad: CiudadEntity = await this.ciudadRepository.findOne({where: {id: ciudadId}, relations: ["supermercados"]});
         if (!ciudad)
-          throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)
-       
+          throw new BusinessLogicException("No se encontró la ciudad con el Id dado", BusinessError.NOT_FOUND)  
         return ciudad.supermercados;
     }
 
